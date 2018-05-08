@@ -1,0 +1,16 @@
+{
+  "name": "image-optimizer",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "gulp"
+  },
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-imagemin": "^4.1.0",
+    "imagemin-mozjpeg": "^7.0.0",
+    "imagemin-pngquant": "^5.1.0",
+    "imagemin-zopfli": "^5.1.0"
+  }
+}
