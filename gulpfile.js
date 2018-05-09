@@ -1,28 +1,38 @@
 const gulp = require('gulp');
 const imagemin = require('gulp-imagemin');
+const imageResize = require('gulp-image-resize');
 const imageminPngquant = require('imagemin-pngquant');
 const imageminZopfli = require('imagemin-zopfli');
-const imageminMozjpeg = require('imagemin-mozjpeg'); //need to run 'brew install libpng'
+const imageminMozjpeg = require('imagemin-mozjpeg');
 
-// TODO : add image resizing
-// https://github.com/axyz/gulp-image-resize
+/* TODO : install before using
+* brew install libpng
+* brew install imagemagick
+* brew install graphicsmagick
+* */
 
 gulp.task('default', () =>
     gulp.src('src/**/*.{png,jpg}')
         .pipe(imagemin([
-            //png
+
+            // png
             imageminPngquant({
                 speed: 1,
-                quality: 98 //lossy settings
+                quality: 90, // lossy settings
             }),
             imageminZopfli({
-                more: true
+                more: true,
             }),
-            //jpg very light lossy
+
+            // jpg very light lossy
             imageminMozjpeg({
-                quality: 90
+                quality: 98,
             })
         ]))
+        .pipe(imageResize({
+            width: 1000,
+            filter: 'Catrom'
+        }))
         .pipe(gulp.dest('dist'))
 );
 
